@@ -1,0 +1,90 @@
+# =========================
+# .NET / Visual Studio
+# =========================
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+# Visual Studio cache
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# =========================
+# Publish / Release
+# =========================
+
+# dotnet publish
+publish/
+artifacts/
+
+# Single-file / self-contained output
+*.exe
+*.dll
+*.pdb
+*.deps.json
+*.runtimeconfig.json
+
+# =========================
+# NuGet
+# =========================
+
+# NuGet packages (usually restored)
+packages/
+*.nupkg
+*.snupkg
+
+# NuGet cache (just in case)
+.nuget/
+
+# =========================
+# Logs / Runtime data
+# =========================
+
+# Application logs
+*.log
+
+# Your app local config (runtime-generated)
+watchroots.json
+
+# Optional: other local runtime files
+*.tmp
+*.cache
+
+# =========================
+# OS generated
+# =========================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Mac (just in case)
+.DS_Store
+
+# =========================
+# Backup / temp files
+# =========================
+
+*.bak
+*.old
+*.orig
+*~
+
+# =========================
+# Test / coverage
+# =========================
+
+TestResults/
+coverage/
+coverage.cobertura.xml

@@ -1,0 +1,76 @@
+<Window x:Class="FolderSentinel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:FolderSentinel.ViewModels"
+        Title="FolderSentinel"
+        Width="800"
+        Height="500">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <!-- 监控文件夹选择 -->
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10">
+            <TextBox x:Name="FolderPathTextBox"
+                     Width="400"
+                     Margin="0,0,10,0"/>
+            <Button Content="浏览..."
+                    Width="80"
+                    Click="BrowseFolder_Click"/>
+            <Button Content="添加"
+                    Width="80"
+                    Margin="10,0,0,0"
+                    Click="AddFolder_Click"/>
+        </StackPanel>
+
+        <!-- 监控目录 + 开始/停止按钮 -->
+        <DockPanel Grid.Row="1" Margin="0,0,0,10">
+            <ListBox x:Name="WatchRootsListBox"
+                     ItemsSource="{Binding WatchRoots}"
+                     DisplayMemberPath="Path"
+                     DockPanel.Dock="Left"
+                     Width="600"
+                     Height="80"/>
+
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+                <Button Width="150"
+                        Margin="0,0,0,10"
+                        Click="StartStopMonitoring_Click"
+                        Content="{Binding StartStopButtonText, FallbackValue='绑定失败'}"/>
+                <Button Content="移除"
+                        Width="150"
+                        Click="RemoveWatchRoot_Click"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- 新增文件夹列表 + 操作按钮 -->
+        <DockPanel Grid.Row="2" Margin="0,0,0,10">
+            <ListBox ItemsSource="{Binding NewFolders}"
+                     DisplayMemberPath="FullPath"
+                     DockPanel.Dock="Left"
+                     Width="600"/>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+                <Button Content="移至回收站"
+                        Width="150"
+                        Margin="0,0,0,10"
+                        Click="MoveToRecycleBin_Click"/>
+                <Button Content="直接删除"
+                        Width="150"
+                        Click="DeleteDirect_Click"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- 日志窗口 -->
+        <GroupBox Grid.Row="3" Header="日志">
+            <ListBox ItemsSource="{Binding Logs}"
+                     DisplayMemberPath="Message"/>
+        </GroupBox>
+    </Grid>
+</Window>
