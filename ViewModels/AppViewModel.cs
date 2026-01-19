@@ -205,6 +205,18 @@ namespace FolderSentinel.ViewModels
             }
         }
 
+        public void ClearNewFolders()
+        {
+            if (!NewFolders.Any())
+            {
+                AddLogSafe(new LogEntryViewModel(LogLevel.Info, "新增文件夹列表已为空"));
+                return;
+            }
+
+            NewFolders.Clear();
+            AddLogSafe(new LogEntryViewModel(LogLevel.Info, "已清空新增文件夹列表"));
+        }
+
         private void OnFolderCreated(object? sender, FolderCreatedEventArgs e)
         {
             if (NewFolders.Any(f => f.FullPath == e.FullPath)) return;

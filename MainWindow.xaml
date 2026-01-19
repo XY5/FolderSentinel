@@ -54,6 +54,7 @@
         <DockPanel Grid.Row="2" Margin="0,0,0,10">
             <ListBox ItemsSource="{Binding NewFolders}"
                      DisplayMemberPath="FullPath"
+                     MouseDoubleClick="NewFolders_MouseDoubleClick"
                      DockPanel.Dock="Left"
                      Width="600"/>
             <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
@@ -63,7 +64,11 @@
                         Click="MoveToRecycleBin_Click"/>
                 <Button Content="直接删除"
                         Width="150"
+                        Margin="0,0,0,10"
                         Click="DeleteDirect_Click"/>
+                <Button Content="清空列表"
+                        Width="150"
+                        Click="ClearNewFolders_Click"/>
             </StackPanel>
         </DockPanel>
 

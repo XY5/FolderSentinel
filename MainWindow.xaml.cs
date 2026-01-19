@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using FolderSentinel.Services;
 using FolderSentinel.ViewModels;
 using WinForms = System.Windows.Forms;
@@ -113,6 +114,33 @@ namespace FolderSentinel
             if (result == MessageBoxResult.Yes)
             {
                 Vm.DeleteFoldersDirectly();
+            }
+        }
+
+        private void ClearNewFolders_Click(object sender, RoutedEventArgs e)
+        {
+            Vm.ClearNewFolders();
+        }
+
+        private void NewFolders_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is not System.Windows.Controls.ListBox listBox)
+                return;
+
+            if (listBox.SelectedItem is not NewFolderViewModel folder)
+                return;
+
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = folder.FullPath,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"打开文件夹失败：{ex.Message}");
             }
         }
     }
